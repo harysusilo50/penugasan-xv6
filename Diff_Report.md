@@ -32,19 +32,21 @@ CS333_CFLAGS ?= -DPDX_XV6
 ifeq ($(CS333_CFLAGS), -DPDX_XV6)
 CS333_UPROGS +=	_halt _uptime
 endif
+
 ifeq ($(PRINT_SYSCALLS), 1)
 CS333_CFLAGS += -DPRINT_SYSCALLS
 endif
+
 ifeq ($(CS333_PROJECT), 1)
 CS333_CFLAGS += -DCS333_P1
 CS333_UPROGS += _date
 endif
 ```
 
-<h2>user.h</h2>
+<h2>user. h</h2>
 ```#ifdef CS333_P1
-int date(struct rtcdate*); // <-- CS333P1
-#endif 
+int date(struct rtcdate*);
+#endif
 ```
 
 <h2> usys.S </h2>
@@ -84,8 +86,8 @@ sys_date(void)
 
 <h2>proc.c</h2>
 ```p->start_ticks = ticks;
-```
-```void procdumpP1(struct proc *p, char *state_string)
+
+void procdumpP1(struct proc *p, char *state_string)
 {
   int elapsed_s;
   int elapsed_ms;
