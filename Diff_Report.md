@@ -2,7 +2,8 @@
 
 <h2> syscall.c </h2>
 
-```void
+```
+void
 syscall(void)
 {
   int num;
@@ -23,7 +24,6 @@ syscall(void)
 ```
 
 <h1> Date System Call </h1>
-
 <h2> makefile </h2>
 
 ```CS333_PROJECT ?= 1
@@ -44,21 +44,29 @@ endif
 ```
 
 <h2>user. h</h2>
-```#ifdef CS333_P1
+
+```
+#ifdef CS333_P1
 int date(struct rtcdate*);
 #endif
 ```
 
 <h2> usys.S </h2>
-```SYSCALL(date)
+
+```
+SYSCALL(date)
 ```
 
 <h2> syscall.h </h2>
-```#define SYS_date    SYS_halt+1
+
+```
+#define SYS_date  SYS_halt+1
 ```
 
 <h2> syscall.c </h2>
-```#ifdef CS333_P1
+
+```
+#ifdef CS333_P1
 extern int sys_date(void);
 #endif // CS333_P1
 #ifdef CS333_P1
@@ -68,7 +76,9 @@ extern int sys_date(void);
 ```
 
 <h2>sysproc.c</h2>
-```int
+
+```
+int
 sys_date(void)
 {
   struct rtcdate *d;
@@ -77,15 +87,17 @@ sys_date(void)
   cmostime(d);
   return 0;
 }
-```
 
 <h1>Process Information</h1>
 <h2>proc.h </h2>
-```uint start_ticks;
+
+uint start_ticks;
 ```
 
 <h2>proc.c</h2>
-```p->start_ticks = ticks;
+
+```
+p->start_ticks = ticks;
 
 void procdumpP1(struct proc *p, char *state_string)
 {
@@ -107,4 +119,3 @@ void procdumpP1(struct proc *p, char *state_string)
   return;
 }
 #endif
-```
