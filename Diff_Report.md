@@ -45,8 +45,7 @@ endif
 <h2>user.h</h2>
 ```#ifdef CS333_P1
 int date(struct rtcdate*); // <-- CS333P1
-#endif  
-
+#endif 
 ```
 <h2> usys.S </h2>
 ```SYSCALL(date)
