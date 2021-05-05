@@ -2,7 +2,7 @@
 
 <h2> syscal.c </h2>
 
-void
+```void
 syscall(void)
 {
   int num;
@@ -20,3 +20,25 @@ syscall(void)
     curproc->tf->eax = -1;
   }
 }
+```
+
+<h1> Date System Call </h1>
+
+<h2> makefile </h2>
+
+```CS333_PROJECT ?= 1
+PRINT_SYSCALLS ?= 0
+CS333_CFLAGS ?= -DPDX_XV6
+ifeq ($(CS333_CFLAGS), -DPDX_XV6)
+CS333_UPROGS +=	_halt _uptime
+endif
+
+ifeq ($(PRINT_SYSCALLS), 1)
+CS333_CFLAGS += -DPRINT_SYSCALLS
+endif
+
+ifeq ($(CS333_PROJECT), 1)
+CS333_CFLAGS += -DCS333_P1
+CS333_UPROGS += _date
+endif
+```
