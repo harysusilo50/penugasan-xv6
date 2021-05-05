@@ -87,10 +87,12 @@ sys_date(void)
   cmostime(d);
   return 0;
 }
+```
 
 <h1>Process Information</h1>
 <h2>proc.h </h2>
 
+```
 uint start_ticks;
 ```
 
