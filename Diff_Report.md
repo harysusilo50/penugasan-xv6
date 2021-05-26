@@ -180,6 +180,7 @@ main(void)
 #endif
 ```
 <h2>syscall.c</h2>
+
 ```
 #ifdef CS333_P2
 extern int sys_getuid(void);
@@ -213,6 +214,7 @@ extern int sys_getprocs(void);
 #endif
 ```
 <h2>syscall.h</h2>
+
 ```
 #define SYS_getuid   SYS_date+1
 #define SYS_getgid   SYS_getuid+1
@@ -221,6 +223,7 @@ extern int sys_getprocs(void);
 #define SYS_setgid   SYS_setuid+1
 ```
 <h2>sysproc.c</h2>
+
 ```
 #ifdef CS333_P2
 int
@@ -260,7 +263,9 @@ sys_setgid(void)
 }
 #endif //CS333_P2
 ```
+
 <h2>time.c</h2>
+
 
 ```
 #ifdef CS333_P2
