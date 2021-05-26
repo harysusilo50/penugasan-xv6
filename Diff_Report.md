@@ -8,41 +8,56 @@
 
 <h2>p2-test.c</h2> 
 
-```#define CPUTIME_TEST
+```
+#define CPUTIME_TEST
 #define GETPROCS_TEST
-#define TIME_TEST```
+#define TIME_TEST
+```
 
 <h2>proc.c</h2> 
 
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
 #include "uproc.h"
-#endif```
+#endif
+```
 
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
   p->cpu_ticks_total = 0;
   p->cpu_ticks_in = 0;
-#endif```
+#endif
+```
 
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
   p->uid = DEFAULT_UID;
   p->gid = DEFAULT_GID;
-  #endif``` 
+  #endif
+``` 
 
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
   np->uid = curproc->uid;
   np->gid = curproc->gid;
-#endif```
+#endif
+```
 
 
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
 p->cpu_ticks_in = ticks;
-#endif // CS333_P2```
+#endif // CS333_P2
+```
 
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
   p->cpu_ticks_total += (ticks - p->cpu_ticks_in);
-  #endif // CS333_P2```
+  #endif // CS333_P2
+```
 
-```uint elapsed_s;
+```
+  uint elapsed_s;
   uint elapsed_ms;
 
   elapsed_ms = ticks - p->start_ticks;
@@ -85,24 +100,28 @@ p->cpu_ticks_in = ticks;
     elapsed_s, zero, elapsed_ms, 
     elapsed_cpu_s, cpu_zero, elapsed_cpu_ms, 
     state_string, 
-    p->sz```
-
+    p->sz
+```
 <h2>proc.h</h2> 
 
-```uint uid;
-uint gid;```
+```
+uint uid;
+uint gid;
+```
 
 <h2>syscall.c</h2>
 
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
 extern int sys_getuid(void);
 extern int sys_getgid(void);
 extern int sys_getppid(void);
 extern int sys_setuid(void);
 extern int sys_setgid(void);
-#endif```
-
+#endif
+```
 <h2>ps.c</h2>
+
 ```#ifdef CS333_P2
 #include "types.h"
 #include "user.h"
@@ -127,7 +146,7 @@ main(void)
     uint elapsed_cpu_ticks = current_proc.CPU_total_ticks;
     uint elapsed_cpu_s = elapsed_cpu_ticks/1000;
     uint elapsed_cpu_ms = elapsed_cpu_ticks % 1000;
-
+    
     char* zero = "";
     if(elapsed_ms < 100 && elapsed_ms >= 10)
       zero = "0";
@@ -158,50 +177,52 @@ main(void)
   free(proc);
   exit();
 }
-#endif```
-
+#endif
+```
 <h2>syscall.c</h2>
-
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
 extern int sys_getuid(void);
 extern int sys_getgid(void);
 extern int sys_getppid(void);
 extern int sys_setuid(void);
 extern int sys_setgid(void);
 extern int sys_getprocs(void);
-#endif```
+#endif
+```
 
+```
+#ifdef CS333_P2
+[SYS_getuid]  sys_getuid,
+[SYS_getgid]  sys_getgid,
+[SYS_getppid] sys_getppid,
+[SYS_setuid]  sys_setuid,
+[SYS_setgid]  sys_setgid,
+[SYS_getprocs]  sys_getprocs,
+#endif
+```
 
-```#ifdef CS333_P2
-  [SYS_getuid]  sys_getuid,
-  [SYS_getgid]  sys_getgid,
-  [SYS_getppid] sys_getppid,
-  [SYS_setuid]  sys_setuid,
-  [SYS_setgid]  sys_setgid,
-  [SYS_getprocs]  sys_getprocs,
-#endif```
-
-
-```#ifdef CS333_P2
-  [SYS_getuid]  "getuid",
-  [SYS_getgid]  "getgid",
-  [SYS_getppid] "getppid",
-  [SYS_setuid]  "setuid",
-  [SYS_setgid]  "setgid",
-  [SYS_getprocs]  "getprocs",
-#endif```
-
+```
+#ifdef CS333_P2
+[SYS_getuid]  "getuid",
+[SYS_getgid]  "getgid",
+[SYS_getppid] "getppid",
+[SYS_setuid]  "setuid",
+[SYS_setgid]  "setgid",
+[SYS_getprocs]  "getprocs",
+#endif
+```
 <h2>syscall.h</h2>
-
-```#define SYS_getuid   SYS_date+1
+```
+#define SYS_getuid   SYS_date+1
 #define SYS_getgid   SYS_getuid+1
 #define SYS_getppid  SYS_getgid+1
 #define SYS_setuid   SYS_getppid+1
-#define SYS_setgid   SYS_setuid+1```
-
+#define SYS_setgid   SYS_setuid+1
+```
 <h2>sysproc.c</h2>
-
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
 int
 sys_getuid(void)
 {
@@ -237,11 +258,12 @@ sys_setgid(void)
   myproc()->gid = (uint)tmp;
   return 0;
 }
-#endif //CS333_P2```
-
+#endif //CS333_P2
+```
 <h2>time.c</h2>
 
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
 #include "types.h"
 #include "user.h"
 
@@ -286,34 +308,43 @@ int main(int argc, char *argv[]){
     }
     exit();
 }
-#endif```
+#endif
+```
 
 <h2>user.h</h2>
 
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
 uint getuid(void); // UID of the parent process
 uint getgid(void); // GID of the parent process
 uint getppid(void); // process ID of the parent process
 int setuid(uint); // set UID
 int setgid(uint); // set GID
 int getprocs(uint max, struct uproc* table);
-#endif```
+#endif
+```
 
 <h2>usys.S</h2>
 
-```SYSCALL(getuid)
+```
+SYSCALL(getuid)
 SYSCALL(getgid)
 SYSCALL(getppid)
 SYSCALL(setuid)
-SYSCALL(setgid)```
+SYSCALL(setgid)
+```
 
 <h2>defs.h</h2>
 
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
 #include "uproc.h"
-#endif```
+#endif
+```
 
-```#ifdef CS333_P2
+```
+#ifdef CS333_P2
 int getprocs(uint max, struct uproc* upTable);
-#endif //CS333_P2```
+#endif //CS333_P2
+```
 
